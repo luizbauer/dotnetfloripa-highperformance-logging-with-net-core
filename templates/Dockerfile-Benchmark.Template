@@ -1,0 +1,9 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1
+
+WORKDIR /app
+
+# Copy everything else and build
+COPY . ./
+RUN dotnet publish src/{{PROJECT_NAME}} -c Release -o out
+
+ENTRYPOINT ["dotnet", "out/{{PROJECT_NAME}}.dll"]
